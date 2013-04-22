@@ -35,7 +35,9 @@ while active?
   case action
   when 'check'
     user = Twitter.user
-    hashtags = user.status.hashtags.collect(&:text)
+    status = user.status
+    puts status.inspect
+    hashtags = status.hashtags.collect(&:text)
     if !hashtags.empty?
       puts hashtags.inspect
       if hashtags.include?("pi")
