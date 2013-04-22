@@ -40,7 +40,7 @@ while active?
           pin.on
         end
         if hashtags.include?("off")
-          pin.on
+          pin.off
         end
       end
     end
