@@ -2,15 +2,15 @@ module Twitter
 
   class User
     def initialize
-      
     end
-
     def status
       Status.new
     end
   end
 
   class Status
+    def initialize
+    end
     def hashtags
       [Hashtag.pi, Hashtag.action].compact
     end
