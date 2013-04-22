@@ -22,6 +22,8 @@ GEM
       net-ssh (>= 2.6.5)
     pi_piper (1.3.1)
       ffi
+    rvm-capistrano (1.3.0)
+      capistrano (>= 2.0.0)
     simple_oauth (0.2.0)
     twitter (4.6.2)
       faraday (~> 0.8, < 0.10)
@@ -34,4 +36,5 @@ PLATFORMS
 DEPENDENCIES
   capistrano
   pi_piper
+  rvm-capistrano
   twitter
