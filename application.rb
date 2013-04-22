@@ -5,6 +5,8 @@ rescue LoadError
   require './pi_piper_mock'
 end
 
+puts ENV.inspect
+
 begin
   Twitter.configure do |config|
     config.consumer_key = ENV['CONSUMER_KEY']
