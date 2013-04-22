@@ -13,7 +13,8 @@ begin
     config.oauth_token_secret = ENV['OAUTH_TOKEN_SECRET']
   end
   user = Twitter.user
-rescue
+rescue Exception => exception
+  puts exception.message
   require './twitter_mock'
   user = Twitter.user
 end
@@ -27,7 +28,6 @@ def active?
 end
 
 while active?
-  sleep(2)
   puts "'check' or 'exit'?"
   action = gets.chomp.downcase
   case action
