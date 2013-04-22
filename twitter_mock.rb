@@ -19,7 +19,7 @@ module Twitter
 
   class Hashtag
     def self.pi
-      "pi" if rand(2) == 0
+      HashtagText.new("pi") if rand(2) == 0
     end
 
     def self.action
