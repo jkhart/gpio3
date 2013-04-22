@@ -35,7 +35,7 @@ module Twitter
     end
   end
 
-  def HashtagText
+  class HashtagText
     def initialize(text)
       @text = text
     end
