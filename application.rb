@@ -30,8 +30,9 @@ def active?
 end
 
 while active?
-  puts "'check' or 'exit'?"
-  action = gets.chomp.downcase
+  sleep(3)
+  #puts "'check' or 'exit'?"
+  action = 'check'
   case action
   when 'check'
     user = Twitter.user
