@@ -1,27 +1,40 @@
 require 'twitter'
 begin
   require 'pi_piper'
+rescue LoadError
+  require './pi_piper_mock'
+end
+
+begin
+  Twitter.configure do |config|
+    config.consumer_key = ENV['CONSUMER_KEY']
+    config.consumer_secret = ENV['CONSUMER_SECRET']
+    config.oauth_token = ENV['OAUTH_TOKEN']
+    config.oauth_token_secret = ENV['OAUTH_TOKEN_SECRET']
+  end
+  user = Twitter.user
 rescue
-  require 'pi_piper_mock'
+  require './twitter_mock'
+  user = Twitter.user
 end
 
-Twitter.configure do |config|
-  config.consumer_key = ENV['CONSUMER_KEY']
-  config.consumer_secret = ENV['CONSUMER_SECRET']
-  config.oauth_token = ENV['OAUTH_TOKEN']
-  config.oauth_token_secret = ENV['OAUTH_TOKEN_SECRET']
-end
-user = Twitter.user
+pin = PiPiper::Pin.new(pin: 17, direction: :out)
 
-pin = PiPipper::Pin.new(pin: 17, direction: :out)
+@active = true
+
+def active?
+  !!@active
+end
 
 while active?
-  sleep(5)
-  action = gets "'check' or 'exit'?"
+  sleep(2)
+  puts "'check' or 'exit'?"
+  action = gets.chomp.downcase
   case action
   when 'check'
-    hashtags = user.status.hashtags
+    hashtags = user.status.hashtags.collect(&:text)
     if !hashtags.empty?
+      puts hashtags.inspect
       if hashtags.include?("pi")
         if hashtags.include?("on")
           pin.on
@@ -38,6 +51,3 @@ while active?
   end
 end
 
-def active?
-  !!@active
-end

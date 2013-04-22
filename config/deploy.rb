@@ -10,7 +10,7 @@ set :deploy_to, "/home/pi/applications/#{application}"
 set :deploy_via, :remote_cache
 set :user, "pi"
 set :sudo, 'rvmsudo'
-set :use_sudo, true
+set :use_sudo, false
 set :normalize_asset_timestamps, false
 
 set :rvm_ruby_string, "1.9.3-p392"
@@ -22,6 +22,9 @@ role :app, "192.168.1.110"
 role :db,  "192.168.1.110", :primary => true
 
 namespace :deploy do
+  task :migrate do
+    
+  end
   task :start do
   end
   task :stop do
