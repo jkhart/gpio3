@@ -34,6 +34,7 @@ while active?
   action = gets.chomp.downcase
   case action
   when 'check'
+    user = Twitter.user
     hashtags = user.status.hashtags.collect(&:text)
     if !hashtags.empty?
       puts hashtags.inspect
