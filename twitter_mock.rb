@@ -1,6 +1,6 @@
 module Twitter
   puts "Overriding Twitter"
-  
+
   class User
     def initialize
     end
@@ -28,10 +28,19 @@ module Twitter
       when 0
         nil
       when 1
-        "on"
+        HashtagText.new("on")
       when 2
-        "off"
+        HashtagText.new("off")
       end
+    end
+  end
+
+  def HashtagText
+    def initialize(text)
+      @text = text
+    end
+    def text
+      @text
     end
   end
 
