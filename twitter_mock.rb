@@ -1,10 +1,10 @@
 module Twitter
 
-  def self.user
-    User.new
-  end
-
   class User
+    def initialize
+      
+    end
+
     def status
       Status.new
     end
@@ -32,6 +32,10 @@ module Twitter
         "off"
       end
     end
+  end
+
+  def self.user
+    User.new
   end
 
 end
